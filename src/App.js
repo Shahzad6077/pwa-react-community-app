@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useAuth } from "./Hooks/useFirebase";
 
-function App() {
+import AppEnhancer from "./AppEnhancer";
+import Header from "./Components/Header";
+import Loading from "./Components/Loading";
+import { PublicRoutes, PrivateRoutes } from "./Routes";
+
+function App(props) {
+  const { user, loading } = useAuth();
+
+  let renderSnap = <Loading />;
+  if (!loading) {
+    renderSnap = user ? <PrivateRoutes /> : <PublicRoutes />;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App bg-teal-dark text-teal-light min-h-screen pb-20 md:pb-auto overflow-auto">
+      <Header />
+      <section className="container mx-auto px-4 sm:px-0">{renderSnap}</section>
     </div>
   );
 }
 
-export default App;
+export default AppEnhancer(App);
