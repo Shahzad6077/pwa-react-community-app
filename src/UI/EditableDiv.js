@@ -1,10 +1,11 @@
-import React, { createRef, useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 const ContentEditable = ({
-  txtWrapper,
   setDescription,
   placeholder,
-  value
+  value,
+  placeholderStyle,
+  refresh
 }) => {
   const divRef = useRef();
   const [txtClass, setTxtClass] = useState("text-3xl");
@@ -23,6 +24,9 @@ const ContentEditable = ({
     }
   }, [value]);
 
+  useEffect(() => {
+    divRef.current.innerHTML = "";
+  }, [refresh]);
   const changeHandler = e => {
     const value = divRef.current.innerHTML;
     setDescription(value);
@@ -33,7 +37,10 @@ const ContentEditable = ({
   return (
     <>
       {showPlaceholder && (
-        <span className="pointer-events-none text-3xl absolute top-0 left-0">
+        <span
+          className="pointer-events-none text-3xl absolute top-0 left-0"
+          style={placeholderStyle}
+        >
           {placeholder}
         </span>
       )}
@@ -42,7 +49,7 @@ const ContentEditable = ({
         onInput={changeHandler}
         contentEditable
         suppressContentEditableWarning={true}
-        className={`w-full max-w-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none text break-all ${txtClass}`}
+        className={`w-full max-w-full overflow-x-hidden overflow-y-auto outline-none focus:outline-none text --break-all break-words ${txtClass}`}
         role="textbox"
       ></div>
     </>

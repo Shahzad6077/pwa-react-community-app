@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { withContentRect } from "react-measure";
 import { motion } from "framer-motion";
 
@@ -26,7 +26,7 @@ const secondVariant = {
 };
 const WritePost = ({ isShow, closeHandler, measureRef, ...props }) => {
   const {
-    user: { displayName }
+    user: { displayName, uid }
   } = useAuth();
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
@@ -42,6 +42,7 @@ const WritePost = ({ isShow, closeHandler, measureRef, ...props }) => {
     setFormSubmittedLoader(true);
     const newPostRef = fbCloudDb.collection("posts").doc();
     const data = {
+      uid,
       uname: displayName,
       likes: [],
       images: [],
@@ -58,10 +59,8 @@ const WritePost = ({ isShow, closeHandler, measureRef, ...props }) => {
     }
     try {
       await newPostRef.set(data);
-      console.log("your post is submitted");
       closeHandler();
     } catch (err) {
-      console.log("Post not submited");
     } finally {
       setFormSubmittedLoader(false);
     }

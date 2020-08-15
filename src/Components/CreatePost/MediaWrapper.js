@@ -25,11 +25,9 @@ export const MediaWrapper = (
     if (firstVariantAnimate) {
       setHeight(contentRect.client.height);
     }
-  }, [contentRect.client.height, firstVariantAnimate]);
+  }, [contentRect.client.height, firstVariantAnimate, setHeight]);
 
-  // console.log(contentRect, firstVariantAnimate);
   const uploadMedia = e => {
-    console.log("sss");
     let selected = e.target.files[0];
     if (selected && types.includes(selected.type)) {
       setFile(selected);
@@ -79,6 +77,7 @@ export const MediaWrapper = (
         </div>
       )}
       <div className="w-full my-2 h-1 bg-gray-300" />
+      {error && <p>{error}</p>}
       <div className="px-2">
         <button
           type="submit"

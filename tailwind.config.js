@@ -16,6 +16,9 @@ module.exports = {
         "10": "0.1",
         "20": "0.2",
         "30": "0.3"
+      },
+      borderRadius: {
+        pill: "20px"
       }
     }
   },

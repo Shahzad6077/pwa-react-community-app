@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useUI } from "./Context/useUiReducer";
-import Home from "./Components/Home";
 import Posts from "./Components/Posts";
 import WritePost from "./Components/CreatePost/WritePost";
 

@@ -1,5 +1,3 @@
-console.log("Baby i'm registering.");
-
 const cacheAppIdentifier = "pwaCommunityApp";
 const dynamicCacheAppIdentifier = "pwaCommunityApp-d1";
 
@@ -26,7 +24,6 @@ this.addEventListener("fetch", event => {
   // ##- EVEN WE HAVE INTERNET THE DATA WILL ALWAYS FETCHED FROM SW CACHE.
   // ##- WE NEED DATA FROM CACHE WHEN INTERNET IS OFLINE
   if (!navigator.onLine) {
-    console.log("get data ofline");
     event.respondWith(
       caches.match(event.request).then(cacheResult => {
         if (cacheResult) {

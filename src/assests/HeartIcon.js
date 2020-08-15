@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { motion, useCycle } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 const variants = {
   notLiked: {
@@ -12,14 +12,6 @@ const variants = {
   }
 };
 const HeartIcon = ({ isLiked = false }) => {
-  const [isAnimate, cycleAnimate] = useCycle("notLiked", "liked");
-  useEffect(() => {
-    if (isLiked) {
-      cycleAnimate();
-    } else if (isAnimate === "liked") {
-      cycleAnimate();
-    }
-  }, [isLiked]);
   return (
     <motion.svg
       width="30px"
@@ -32,7 +24,7 @@ const HeartIcon = ({ isLiked = false }) => {
       stroke="currentColor"
       variants={variants}
       initial="notLiked"
-      animate={isAnimate}
+      animate={isLiked ? "liked" : "notLiked"}
     >
       <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
     </motion.svg>

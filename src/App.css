@@ -34,3 +34,11 @@
   background: var(--primary);
   /* margin-top: 20px; */
 }
+/* loader */
+.loader {
+  width: 10px;
+  height: 10px;
+  margin: auto;
+  border-radius: 50%;
+  background: #fff;
+}

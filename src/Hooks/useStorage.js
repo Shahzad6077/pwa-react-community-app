@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { fbCloudDb, fbStorage, serverTimestamp } from "./useFirebase";
-
 const useStorage = file => {
-  const [progress, setProgress] = useState(0);
-  const [error, setError] = useState(null);
+  const [progress] = useState(0);
+  const [error] = useState(null);
   const [url, setUrl] = useState(null);
 
   useEffect(() => {

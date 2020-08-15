@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import HeartIcon from "./../assests/HeartIcon";
 import { useAuth, fbCloudDb, fbFirestore } from "../Hooks/useFirebase";
 import { motion } from "framer-motion";
+import CreateComment from "./Comment/CreateComment";
+import Comments from "./Comment/Comments";
+
 const likeNumberVariants = {
   popup: {
     y: [10, 0]
@@ -21,6 +24,7 @@ const Post = ({
   uname
 }) => {
   const [isLiked, setLike] = useState(false);
+  const [showComments, setShowComments] = useState(false);
   const {
     user: { uid }
   } = useAuth();
@@ -42,6 +46,9 @@ const Post = ({
     }
   };
 
+  const commentsVisibilityToggler = () => {
+    setShowComments(p => !p);
+  };
   return (
     <div className="mx-auto p-2 md:p-4 md:w-6/12 bg-teal-lighter rounded">
       <div className="flex justify-between items-center">
@@ -66,15 +73,19 @@ const Post = ({
         </div>
       </div>
       <p>{createdAt?.toDate().toDateString()}</p>
-      <p className="text-white mt-2">{description}</p>
       <div
-        className="mt-2 c-mx-2 cmd:-mx-4 rdounded-lg overflow-hidden "
+        className="text-white mt-2"
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+      <div
+        className="my-2 c-mx-2 cmd:-mx-4 rdounded-lg overflow-hidden "
         style={{ maxHeight: "350px" }}
       >
         {images.map((src, i) => {
           return (
             <div key={i} className="" style={{ maxHeight: "inherit" }}>
               <img
+                loading="lazy"
                 className="block w-full max-h-full object-cover object-center"
                 src={src}
                 alt="asdasd"
@@ -83,6 +94,16 @@ const Post = ({
             </div>
           );
         })}
+      </div>
+      <CreateComment postId={docId} />
+      <div className="flex flex-col justify-center py-1">
+        <button
+          className="mx-auto focus:outline-none"
+          onClick={commentsVisibilityToggler}
+        >
+          {showComments ? "Hide " : "Show "}Comments
+        </button>
+        {showComments && <Comments postId={docId} />}
       </div>
     </div>
   );

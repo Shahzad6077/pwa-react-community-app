@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Signup = props => {
-  const { signup, createUserDoc, updateUserProfile, signout } = useAuth();
+  const { signup, createUserDoc, updateUserProfile } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setError] = useState(null);
@@ -26,10 +26,7 @@ const Signup = props => {
       const displayName = email.split("@")[0];
       signup(email, password).then(response => {
         if (response.user) {
-          const name = response.user.displayName || "N/A";
           const email = response.user.email;
-          const photoUrl = response.user.photoURL;
-          const emailVerified = response.user.emailVerified;
           const uid = response.user.uid;
           updateUserProfile({ displayName }).then(byUp => {
             createUserDoc(uid, {
@@ -39,7 +36,6 @@ const Signup = props => {
             })
               .then(r => {})
               .catch(err => {
-                console.log(err);
                 const msg = err?.message;
                 setError(msg);
               });
@@ -54,6 +50,7 @@ const Signup = props => {
       <form
         className="flex flex-col mx-auto w-11/12 md:w-4/12"
         onSubmit={onSubmit}
+        autoComplete="off"
       >
         <input
           className="font-semibold text-lg px-2 py-1 my-2 bg-transparent border-b-2 border-gray-500 focus:outline-none "

@@ -24,8 +24,7 @@ const Login = props => {
 
     if (email.length > 0 && password.length > 0) {
       try {
-        const res = await signin(email, password);
-        console.log(res);
+        await signin(email, password);
       } catch (error) {
         const code = error?.code;
         if (code === "auth/user-not-found") {
@@ -40,6 +39,7 @@ const Login = props => {
       <form
         className="flex flex-col mx-auto w-11/12 md:w-4/12"
         onSubmit={onSubmit}
+        autoComplete="off"
       >
         <input
           className="font-semibold text-lg px-2 py-1 my-2 bg-transparent border-b-2 border-gray-500 focus:outline-none "

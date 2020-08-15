@@ -10,24 +10,24 @@ const PrivateLinks = props => {
   return (
     <div className=" flex space-x-4">
       <Link
-        className="p-2 rounded-lg hover:bg-black hover:bg-opacity-10  duration-200 hover:transition-opacity ease-in-out "
+        className="inline-flex justify-center items-center text-center p-2 rounded-lg hover:bg-black hover:bg-opacity-10  duration-200 hover:transition-opacity ease-in-out "
         to="/"
       >
         Home
       </Link>
       <Link
-        className="p-2 rounded-lg hover:bg-black hover:bg-opacity-10  duration-200 hover:transition-opacity ease-in-out "
+        className="inline-flex justify-center items-center text-center p-2 rounded-lg hover:bg-black hover:bg-opacity-10  duration-200 hover:transition-opacity ease-in-out "
         to="#create-post"
         onClick={postModalToggler}
       >
         Write Post
       </Link>
-      <Link
-        className="p-2 rounded-lg hover:bg-black hover:bg-opacity-10  duration-200 hover:transition-opacity ease-in-out "
+      {/* <Link
+        className="inline-flex justify-center items-center text-center p-2 rounded-lg hover:bg-black hover:bg-opacity-10  duration-200 hover:transition-opacity ease-in-out "
         to="/posts"
       >
         Posts
-      </Link>
+      </Link> */}
       <button
         onClick={signout}
         className="p-2 rounded-lg hover:bg-black hover:bg-opacity-10  duration-200 hover:transition-opacity ease-in-out"

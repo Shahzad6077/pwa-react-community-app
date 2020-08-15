@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 
 const FetchData = props => {
   const params = useParams();
-  console.log("FetchData", params);
   return (
     <div className="bg-red-100">
       <h1>Start {params.id}</h1>

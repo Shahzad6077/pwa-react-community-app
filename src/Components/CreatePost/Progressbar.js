@@ -10,8 +10,7 @@ const ProgressBar = ({ file, setFile, setUrl }) => {
       setUrl(url);
       setFile(null);
     }
-    console.log(url);
-  }, [url, setFile]);
+  }, [url, setFile, setUrl]);
 
   return (
     <div className="px-2 bg-gray-300 my-4">

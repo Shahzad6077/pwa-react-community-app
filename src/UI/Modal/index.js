@@ -7,7 +7,7 @@ const Modal = ({ isOpen, children, closeHandler }) => {
     e.stopPropagation();
   };
   return (
-    <AnimatePresence onExitComplete={() => console.log("exittt")}>
+    <AnimatePresence>
       {/* DROPLET */}
       {isOpen && (
         <motion.div

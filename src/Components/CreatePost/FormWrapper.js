@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { withContentRect } from "react-measure";
 import MediaBtnGroup from "./MediaBtnGroup";
@@ -16,27 +16,23 @@ const firstVariant = {
   }
 };
 
-const FormWrapper = (
-  {
-    firstVariantAnimate,
-    setDescription,
-    displayName,
-    description,
-    animateHandler,
-    measureRef,
-    setHeight,
-    contentRect,
-    submitHandler,
-    formSubmittedLoader
-  },
-  ref
-) => {
+const FormWrapper = ({
+  firstVariantAnimate,
+  setDescription,
+  displayName,
+  description,
+  animateHandler,
+  measureRef,
+  setHeight,
+  contentRect,
+  submitHandler,
+  formSubmittedLoader
+}) => {
   useEffect(() => {
     if (!firstVariantAnimate) {
-      //   console.log("111");
       setHeight(contentRect.client.height);
     }
-  }, [contentRect.client.height, firstVariantAnimate]);
+  }, [contentRect.client.height, firstVariantAnimate, setHeight]);
   return (
     <motion.div
       ref={measureRef}
@@ -106,5 +102,4 @@ const FormWrapper = (
   );
 };
 
-const ForwardWrapper = forwardRef(FormWrapper);
-export default withContentRect("client")(ForwardWrapper);
+export default withContentRect("client")(FormWrapper);
